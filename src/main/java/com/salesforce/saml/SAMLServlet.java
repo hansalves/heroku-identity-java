@@ -242,7 +242,13 @@ public class SAMLServlet extends HttpServlet{
 
         //Get the SAMLResponse and RelayState
         String encodedResponse = request.getParameter("SAMLResponse");
-        System.out.println(encodedResponse);
+        System.out.println("ENCODED SAML RESPONSE " + encodedResponse);
+        System.out.println("----- BEGIN DECODED SAML RESPONSE -----");
+        for (String line: new String(Base64.decodeBase64(encodedResponse.getBytes("UTF-8")),"UTF-8").split("\n")) {
+            System.out.println(line);
+        }
+        System.out.println("------ END DECODED SAML RESPONSE ------");
+
         String relayState = request.getParameter("RelayState");
         if ((relayState == null) || ( relayState.equals(""))) relayState = "/";
 
