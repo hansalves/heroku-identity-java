@@ -10,6 +10,7 @@ if (cookies != null) {
     }
   }
 }
+
 %>
 
 <html>
@@ -18,6 +19,7 @@ if (cookies != null) {
 </head>
 
 <body>
+
 
 <% if (identity != null ) { %>
 <center>
