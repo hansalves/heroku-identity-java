@@ -1,5 +1,6 @@
 <%@ page import="com.salesforce.saml.Identity,com.salesforce.util.Bag,java.util.Set,java.util.Iterator,java.util.ArrayList" %>
 <%
+String app = new URI(request.getRequestURL().toString()).getHost().split("\\.")[0];
 Identity identity = null;
 Cookie[] cookies = request.getCookies();
 if (cookies != null) {
@@ -9,7 +10,6 @@ if (cookies != null) {
     }
   }
 }
-
 %>
 
 <html>
@@ -18,7 +18,6 @@ if (cookies != null) {
 </head>
 
 <body>
-
 
 <% if (identity != null ) { %>
 <center>
@@ -43,6 +42,7 @@ if (cookies != null) {
 %>
 </table>
 <br>
+<p>View the SAML response in the logs with <code>heroku logs -a <%= app %></code></p>
 <a href="/_saml?logout=true" class="button center">Logout</a>
 </center>
 <% } else {  %>
