@@ -23,6 +23,7 @@ if (cookies != null) {
 <% if (identity != null ) { %>
 <center>
 <h2><%= identity.getSubject() %></h2>
+<p><%= identity.getIdentityStr() %></p>
 <table border="0" cellpadding="5">
 <%
 	Bag attributes = identity.getAttributes();

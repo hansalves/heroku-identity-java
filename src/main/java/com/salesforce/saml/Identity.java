@@ -41,10 +41,11 @@ public class Identity {
 
 
     private String subject;
+    private String identityStr;
     private Bag attributes;
 
     public Identity(String identity, boolean encoded) throws UnsupportedEncodingException {
-
+        this.identityStr = identity;
         this.attributes = new Bag();
         if (encoded) {
             byte[] theBytes = Base64.decodeBase64(identity);
@@ -65,6 +66,10 @@ public class Identity {
         } else {
             this.subject = identity;
         }
+    }
+
+    public String getIdentityStr() {
+        return identityStr;
     }
 
     public String getSubject() {
