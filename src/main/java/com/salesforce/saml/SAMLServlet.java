@@ -242,6 +242,7 @@ public class SAMLServlet extends HttpServlet{
 
         //Get the SAMLResponse and RelayState
         String encodedResponse = request.getParameter("SAMLResponse");
+        System.out.println(encodedResponse);
         String relayState = request.getParameter("RelayState");
         if ((relayState == null) || ( relayState.equals(""))) relayState = "/";
 
@@ -261,16 +262,14 @@ public class SAMLServlet extends HttpServlet{
             }
             Cookie identityCookie = new Cookie("IDENTITY", Base64.encodeBase64URLSafeString(identityJSON.toString().getBytes("UTF-8")));
             response.addCookie(identityCookie);
-
-            String decodedResponse = new String(Base64.decodeBase64(encodedResponse.getBytes("UTF-8")),"UTF-8");
-            Cookie samlCookie = new Cookie("TEST", Base64.encodeBase64URLSafeString(decodedResponse.getBytes("UTF-8")));
-            response.addCookie(samlCookie);
-
         } catch (Exception e) {
             response.sendError(401, "Access Denied: " + e.getMessage());
             return;
         }
         response.sendRedirect(relayState);
+
+
+
     }
 
 }
